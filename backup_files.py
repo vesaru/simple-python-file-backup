@@ -1,4 +1,19 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
+
+"""
+Simple python file backup
+License: MIT
+"""
+
+__author__     = 'Vesa Ruohonen'
+__copyright__  = 'Copyright 2018, Simple python file backup'
+__credits__    = ['Vesa Ruohonen']
+__license__    = 'MIT'
+__version__    = '0.1'
+__maintainer__ = 'Vesa Ruohonen'
+__email__      = 'vesa.m.ruohonen@gmail.com'
+__status__     = 'dev'
 
 #
 # Imports
@@ -338,109 +353,17 @@ def clean_backup_path(target_path, backup_count):
 	print('Done cleaning')
 
 #
-# Deprecated code
-#
-
-# def take_backup(target_directory, backup_directory, rotation_count=3):
-# 	main([
-# 		'-t', target_directory,
-# 		'-b', backup_directory,
-# 		'-r', rotation_count,
-# 	])
-
-
-# def main(argv):
-# 	backup_directory      = ''
-# 	backup_rotation_count = 3
-# 	target_directory      = os.path.abspath(RSYNC_SOURCE)
-#
-# 	try:
-# 		# Add colon after commands requiring an argument
-# 		opts, args = getopt.getopt(argv,"hb:r:t:",["help", "backupdir=",'rcount=','targetdir='])
-# 	except getopt.GetoptError:
-# 		print 'backup_dir.py -b <backupdirectory>'
-# 		sys.exit(2)
-#
-# 	for opt, arg in opts:
-# 		if opt in ('-h', '--help'):
-# 			print('Backup current directory:')
-# 			print('\tbackup_dir.py -b <backupdirectory>\n')
-# 			print('Backup target directory:')
-# 			print('\tbackup_dir.py -t <targetdirectory> -b <backupdirectory>\n')
-# 			sys.exit(0)
-#
-# 		elif opt in ('-b', '--backupdir'):
-# 			backup_directory = os.path.abspath(arg)
-#
-# 		elif opt in ('-t', '--targetdir'):
-# 			target_directory = os.path.abspath(arg)
-#
-# 		elif opt in ('-r', '--rcount'):
-# 			try:
-# 				backup_rotation_count = int(arg)
-# 				if backup_rotation_count < 1:
-# 					raise ValueError()
-#
-# 			except ValueError:
-# 				print 'Invalid rotation count "{0}"'.format(arg)
-# 				sys.exit(1)
-#
-# 	if os.path.isdir(backup_directory) and os.path.isdir(target_directory):
-# 		if (backup_directory.startswith(target_directory)):
-# 			print(
-# 				(
-# 					'Backup directory is inside backup target directory!\n'
-# 					'Backup: {0}\n'
-# 					'Target: {1}'
-# 				).format(backup_directory, target_directory)
-# 			)
-# 			sys.exit(1)
-#
-# 		snapshots = list_backup_directories(backup_directory)
-# 		next_backup_dir = os.path.join(backup_directory, get_timestamp())
-#
-# 		if os.path.isdir(next_backup_dir):
-# 			print('Next backup destination directory already exists: "{0}"'.format(next_backup_dir))
-# 			sys.exit(1)
-#
-# 		# Create rsync command
-# 		run_rsync_command = RSYNC_COMMAND[:]
-#
-# 		if len(snapshots):
-# 			# Use last backup as hard link reference if available
-# 			run_rsync_command.append(RSYNC_LINKDEST.format(snapshots[-1]))
-# 			#raise Exception(RSYNC_LINKDEST.format(snapshots[-1]))
-#
-# 		# Specify targets for rsync command
-# 		run_rsync_command.append(target_directory + os.path.sep)
-# 		run_rsync_command.append(next_backup_dir)
-#
-# 		# Print command
-# 		print(run_rsync_command)
-#
-# 		# Run rsync command
-# 		call(run_rsync_command)
-#
-# 		# Clean extra backup rotations
-# 		current_snapshots = list_backup_directories(backup_directory)
-#
-# 		while len(current_snapshots) > backup_rotation_count:
-# 			old_snapshot = current_snapshots.pop(0)
-# 			if os.path.isdir(old_snapshot):
-# 				shutil.rmtree(old_snapshot)
-# 			else:
-# 				raise IOError('Something went wrong cleaning "{0}"'.format(old_snapshot))
-#
-# 	else:
-# 		print('Invalid backup destination directory')
-# 		sys.exit(1)
-
-#
 # Python main
 #
 
 if __name__ == "__main__":
-	#main(sys.argv[1:])
+	"""
+	Simple python file backup.
+
+	Usage:
+		sudo python backup_files.py
+		sudo python backup_files.py <backup_cfg_file>
+	"""
 	if len(sys.argv) > 1 and sys.argv[1]:
 		backup_cfg = sys.argv[1]
 	else:
