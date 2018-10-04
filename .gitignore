@@ -1,0 +1,29 @@
+# Git ignore definitions
+
+#
+# Project specific
+#
+
+/backup.ini
+
+#
+# Binary compiled files
+#
+
+*.o
+*.py[cod]
+
+#
+# Ignore binary libraries
+#
+
+*.so
+
+#
+# Misc OS files
+#
+
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
